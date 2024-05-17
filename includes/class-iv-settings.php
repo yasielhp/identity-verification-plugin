@@ -26,7 +26,6 @@ class IV_Settings {
         register_setting('iv_settings_group', 'iv_redirect_no_verificado');
         register_setting('iv_settings_group', 'iv_content_pendiente');
         register_setting('iv_settings_group', 'iv_redirect_verificado');
-        register_setting('iv_settings_group', 'iv_content_fallo');
         register_setting('iv_settings_group', 'iv_content_verificado'); // Nueva opción para contenido verificado
 
         // Añade una sección de configuración
@@ -60,15 +59,6 @@ class IV_Settings {
             'iv_redirect_verificado', // ID del campo
             __('Página de Redirección (Verificado)', 'identity-verification'), // Título del campo
             array($this, 'redirect_verificado_field'), // Callback para mostrar el campo
-            'identity-verification-settings', // Slug de la página en la que se muestra el campo
-            'iv_settings_section' // ID de la sección a la que pertenece el campo
-        );
-
-        // Añade un campo de configuración para el contenido (Fallo en Verificación)
-        add_settings_field(
-            'iv_content_fallo', // ID del campo
-            __('Contenido (Fallo en Verificación)', 'identity-verification'), // Título del campo
-            array($this, 'content_fallo_field'), // Callback para mostrar el campo
             'identity-verification-settings', // Slug de la página en la que se muestra el campo
             'iv_settings_section' // ID de la sección a la que pertenece el campo
         );
@@ -111,14 +101,6 @@ class IV_Settings {
             'selected' => $value,
             'show_option_none' => __('Seleccionar página', 'identity-verification'),
             'option_none_value' => ''
-        ));
-    }
-
-    public function content_fallo_field() {
-        // Muestra un editor de texto enriquecido para el contenido (Fallo en Verificación)
-        $value = get_option('iv_content_fallo', '');
-        wp_editor($value, 'iv_content_fallo', array(
-            'textarea_name' => 'iv_content_fallo',
         ));
     }
 

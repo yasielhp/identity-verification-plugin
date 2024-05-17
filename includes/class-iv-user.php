@@ -34,10 +34,6 @@ class IV_User {
             return wpautop(get_option('iv_content_pendiente', ''));
         }
 
-        if ($verification_status === 'fallo') {
-            return wpautop(get_option('iv_content_fallo', ''));
-        }
-
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_verification'])) {
             // Manejar la actualización de la verificación
             update_user_meta($user_id, 'identity_verification', sanitize_text_field($_POST['identity_verification_info']));

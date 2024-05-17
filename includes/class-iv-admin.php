@@ -64,7 +64,6 @@ class IV_Admin {
                         <option value="no_verificado" <?php selected(get_the_author_meta('verification_status', $user->ID), 'no_verificado'); ?>><?php _e("No Verificado", "identity-verification"); ?></option>
                         <option value="pendiente" <?php selected(get_the_author_meta('verification_status', $user->ID), 'pendiente'); ?>><?php _e("Pendiente", "identity-verification"); ?></option>
                         <option value="verificado" <?php selected(get_the_author_meta('verification_status', $user->ID), 'verificado'); ?>><?php _e("Verificado", "identity-verification"); ?></option>
-                        <option value="fallo" <?php selected(get_the_author_meta('verification_status', $user->ID), 'fallo'); ?>><?php _e("Fallo en Verificación", "identity-verification"); ?></option>
                     </select><br />
                     <span class="description"><?php _e("Seleccione el estado de verificación.", "identity-verification"); ?></span>
                 </td>
@@ -127,7 +126,6 @@ class IV_Admin {
                 <option value="no_verificado"><?php _e('No Verificado', 'identity-verification'); ?></option>
                 <option value="pendiente"><?php _e('Pendiente', 'identity-verification'); ?></option>
                 <option value="verificado"><?php _e('Verificado', 'identity-verification'); ?></option>
-                <option value="fallo"><?php _e('Fallo en Verificación', 'identity-verification'); ?></option>
             </select>
             <button type="button" class="button" id="apply-verification-status"><?php _e('Aplicar', 'identity-verification'); ?></button>
         </div>
