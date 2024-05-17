@@ -3,7 +3,7 @@
 Plugin Name: Identity Verification
 Description: Verifica la identidad de los usuarios y muestra contenido según el estado de verificación.
 Version: 1.0
-Author: Yasie Hernández Portal
+Author: Yasiel Hernández Portal
 Text Domain: identity-verification
 */
 
