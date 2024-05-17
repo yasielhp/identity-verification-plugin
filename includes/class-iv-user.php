@@ -67,18 +67,26 @@ class IV_User {
         ?>
         <form method="post" enctype="multipart/form-data">
             <p>
-                <label for="identity_verification_info"><?php _e('Número de DNI:', 'identity-verification'); ?></label>
-                <input type="text" name="identity_verification_info" id="identity_verification_info" required>
+            <label for="identity_verification_info"><?php _e('Número de DNI:', 'identity-verification'); ?></label>
+            <input type="text" name="identity_verification_info" id="identity_verification_info" required>
             </p>
             <p>
-                <label for="identity_verification_file"><?php _e('Subir foto del DNI:', 'identity-verification'); ?></label>
-                <input type="file" name="identity_verification_file" id="identity_verification_file" accept="image/*" required>
+            <label for="identity_verification_file"><?php _e('Subir foto del DNI:', 'identity-verification'); ?></label>
+            <input type="file" name="identity_verification_file" id="identity_verification_file" accept="image/*" required>
             </p>
             <p>
-                <input type="submit" name="submit_verification" value="<?php _e('Enviar', 'identity-verification'); ?>">
+            <input type="submit" name="submit_verification" value="<?php _e('Enviar', 'identity-verification'); ?>">
             </p>
         </form>
         <?php
+
+        // Redirigir después de la verificación
+        $redirect_url = get_option('iv_redirect_pendiente', home_url());
+        if ($current_url !== $redirect_url && !headers_sent()) {
+            wp_redirect($redirect_url);
+            exit;
+        }
+
         return ob_get_clean();
     }
 }
