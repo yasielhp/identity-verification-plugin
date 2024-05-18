@@ -11,70 +11,62 @@ class IV_Settings {
     }
 
     public function add_settings_page() {
-        // Añade una página de opciones en el menú de administración
         add_options_page(
-            __('Verificación de Identidad', 'identity-verification'), // Título de la página
-            __('Verificación de Identidad', 'identity-verification'), // Título del menú
-            'manage_options', // Capacidad requerida para acceder a la página
-            'identity-verification-settings', // Slug de la página
-            array($this, 'settings_page_html') // Función que muestra el contenido de la página
+            __('Verificación de Identidad', 'identity-verification'),
+            __('Verificación de Identidad', 'identity-verification'),
+            'manage_options',
+            'identity-verification-settings',
+            array($this, 'settings_page_html')
         );
     }
 
     public function register_settings() {
-        // Registra las opciones de configuración
         register_setting('iv_settings_group', 'iv_redirect_no_verificado');
         register_setting('iv_settings_group', 'iv_content_pendiente');
         register_setting('iv_settings_group', 'iv_redirect_verificado');
-        register_setting('iv_settings_group', 'iv_content_verificado'); // Nueva opción para contenido verificado
+        register_setting('iv_settings_group', 'iv_content_verificado');
 
-        // Añade una sección de configuración
         add_settings_section(
-            'iv_settings_section', // ID de la sección
-            __('Configuración de Contenidos de Verificación', 'identity-verification'), // Título de la sección
-            null, // Callback para mostrar el contenido de la sección (no se utiliza en este caso)
-            'identity-verification-settings' // Slug de la página en la que se muestra la sección
+            'iv_settings_section',
+            __('Configuración de Contenidos de Verificación', 'identity-verification'),
+            null,
+            'identity-verification-settings'
         );
 
-        // Añade un campo de configuración para la página de redirección (No Verificado)
         add_settings_field(
-            'iv_redirect_no_verificado', // ID del campo
-            __('Página de Redirección (No Verificado)', 'identity-verification'), // Título del campo
-            array($this, 'redirect_no_verificado_field'), // Callback para mostrar el campo
-            'identity-verification-settings', // Slug de la página en la que se muestra el campo
-            'iv_settings_section' // ID de la sección a la que pertenece el campo
+            'iv_redirect_no_verificado',
+            __('Página de Redirección (No Verificado)', 'identity-verification'),
+            array($this, 'redirect_no_verificado_field'),
+            'identity-verification-settings',
+            'iv_settings_section'
         );
 
-        // Añade un campo de configuración para el contenido (Pendiente)
         add_settings_field(
-            'iv_content_pendiente', // ID del campo
-            __('Contenido (Pendiente)', 'identity-verification'), // Título del campo
-            array($this, 'content_pendiente_field'), // Callback para mostrar el campo
-            'identity-verification-settings', // Slug de la página en la que se muestra el campo
-            'iv_settings_section' // ID de la sección a la que pertenece el campo
+            'iv_content_pendiente',
+            __('Contenido (Pendiente)', 'identity-verification'),
+            array($this, 'content_pendiente_field'),
+            'identity-verification-settings',
+            'iv_settings_section'
         );
 
-        // Añade un campo de configuración para la página de redirección (Verificado)
         add_settings_field(
-            'iv_redirect_verificado', // ID del campo
-            __('Página de Redirección (Verificado)', 'identity-verification'), // Título del campo
-            array($this, 'redirect_verificado_field'), // Callback para mostrar el campo
-            'identity-verification-settings', // Slug de la página en la que se muestra el campo
-            'iv_settings_section' // ID de la sección a la que pertenece el campo
+            'iv_redirect_verificado',
+            __('Página de Redirección (Verificado)', 'identity-verification'),
+            array($this, 'redirect_verificado_field'),
+            'identity-verification-settings',
+            'iv_settings_section'
         );
 
-        // Añade un campo de configuración para el contenido (Verificado)
         add_settings_field(
-            'iv_content_verificado', // ID del campo
-            __('Contenido (Verificado)', 'identity-verification'), // Título del campo
-            array($this, 'content_verificado_field'), // Callback para mostrar el campo
-            'identity-verification-settings', // Slug de la página en la que se muestra el campo
-            'iv_settings_section' // ID de la sección a la que pertenece el campo
+            'iv_content_verificado',
+            __('Contenido (Verificado)', 'identity-verification'),
+            array($this, 'content_verificado_field'),
+            'identity-verification-settings',
+            'iv_settings_section'
         );
     }
 
     public function redirect_no_verificado_field() {
-        // Muestra un campo de selección de página para la página de redirección (No Verificado)
         $value = get_option('iv_redirect_no_verificado');
         wp_dropdown_pages(array(
             'name' => 'iv_redirect_no_verificado',
@@ -86,7 +78,6 @@ class IV_Settings {
     }
 
     public function content_pendiente_field() {
-        // Muestra un editor de texto enriquecido para el contenido (Pendiente)
         $value = get_option('iv_content_pendiente', '');
         wp_editor($value, 'iv_content_pendiente', array(
             'textarea_name' => 'iv_content_pendiente',
@@ -94,7 +85,6 @@ class IV_Settings {
     }
 
     public function redirect_verificado_field() {
-        // Muestra un campo de selección de página para la página de redirección (Verificado)
         $value = get_option('iv_redirect_verificado');
         wp_dropdown_pages(array(
             'name' => 'iv_redirect_verificado',
@@ -105,7 +95,6 @@ class IV_Settings {
     }
 
     public function content_verificado_field() {
-        // Muestra un editor de texto enriquecido para el contenido (Verificado)
         $value = get_option('iv_content_verificado', '');
         wp_editor($value, 'iv_content_verificado', array(
             'textarea_name' => 'iv_content_verificado',
@@ -121,9 +110,9 @@ class IV_Settings {
             <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
             <form action="options.php" method="post">
                 <?php
-                settings_fields('iv_settings_group'); // Muestra los campos ocultos necesarios para la seguridad
-                do_settings_sections('identity-verification-settings'); // Muestra las secciones y campos de configuración
-                submit_button(__('Guardar cambios', 'identity-verification')); // Muestra el botón de guardar cambios
+                settings_fields('iv_settings_group');
+                do_settings_sections('identity-verification-settings');
+                submit_button(__('Guardar cambios', 'identity-verification'));
                 ?>
             </form>
         </div>

@@ -12,7 +12,7 @@ class IV_User {
     public function verification_form_shortcode() {
         // Verificar si el usuario ha iniciado sesión
         if (!is_user_logged_in()) {
-            return '<p>' . __('Debes iniciar sesión para acceder a esta página.', 'identity-verification') . '</p>';
+            return '<p>' . esc_html(__('Debes iniciar sesión para acceder a esta página.', 'identity-verification')) . '</p>';
         }
 
         // Obtener el ID del usuario actual
@@ -21,9 +21,12 @@ class IV_User {
         // Obtener el estado de verificación del usuario
         $verification_status = get_user_meta($user_id, 'verification_status', true);
 
-        // Obtener la URL actual
-        global $wp;
-        $current_url = home_url(add_query_arg(array(), $wp->request));
+        // Manejar la actualización de la verificación
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_verification'])) {
+            $this->handle_verification_submission($user_id);
+            // Actualizar el estado de verificación después de la presentación
+            $verification_status = 'pendiente';
+        }
 
         // Verificar el estado de verificación y mostrar el contenido correspondiente
         if ($verification_status === 'verificado') {
@@ -34,8 +37,15 @@ class IV_User {
             return wpautop(get_option('iv_content_pendiente', ''));
         }
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_verification'])) {
-            // Manejar la actualización de la verificación
+        // Mostrar el formulario si el estado no es 'pendiente' ni 'verificado'
+        ob_start();
+        include plugin_dir_path(__FILE__) . '../templates/verification-form.php';
+        return ob_get_clean();
+    }
+
+    private function handle_verification_submission($user_id) {
+        if (isset($_POST['identity_verification_info']) && isset($_FILES['identity_verification_file'])) {
+            // Actualizar el meta de usuario con el número de DNI
             update_user_meta($user_id, 'identity_verification', sanitize_text_field($_POST['identity_verification_info']));
 
             // Manejo de la subida del archivo
@@ -48,45 +58,13 @@ class IV_User {
             $movefile = wp_handle_upload($uploadedfile, $upload_overrides);
 
             if ($movefile && !isset($movefile['error'])) {
+                // Actualizar el meta de usuario con la URL del archivo
                 update_user_meta($user_id, 'identity_verification_file', $movefile['url']);
+                // Actualizar el estado de verificación a 'pendiente'
                 update_user_meta($user_id, 'verification_status', 'pendiente');
-
-                // Redirigir después de la verificación
-                $redirect_url = get_option('iv_redirect_pendiente', home_url());
-
-                if ($current_url !== $redirect_url && !headers_sent()) {
-                    wp_redirect($redirect_url);
-                    exit;
-                }
             } else {
-                return '<p>' . __('Error al subir el archivo: ', 'identity-verification') . $movefile['error'] . '</p>';
+                echo '<p>' . esc_html(__('Error al subir el archivo: ', 'identity-verification')) . esc_html($movefile['error']) . '</p>';
             }
         }
-
-        ob_start();
-        ?>
-        <form method="post" enctype="multipart/form-data">
-            <p>
-            <label for="identity_verification_info"><?php _e('Número de DNI:', 'identity-verification'); ?></label>
-            <input type="text" name="identity_verification_info" id="identity_verification_info" required>
-            </p>
-            <p>
-            <label for="identity_verification_file"><?php _e('Subir foto del DNI:', 'identity-verification'); ?></label>
-            <input type="file" name="identity_verification_file" id="identity_verification_file" accept="image/*" required>
-            </p>
-            <p>
-            <input type="submit" name="submit_verification" value="<?php _e('Enviar', 'identity-verification'); ?>">
-            </p>
-        </form>
-        <?php
-
-        // Redirigir después de la verificación
-        $redirect_url = get_option('iv_redirect_pendiente', home_url());
-        if ($current_url !== $redirect_url && !headers_sent()) {
-            wp_redirect($redirect_url);
-            exit;
-        }
-
-        return ob_get_clean();
     }
 }

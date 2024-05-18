@@ -14,28 +14,25 @@ if (!defined('ABSPATH')) {
 
 // Cargar archivos de idiomas
 function iv_load_textdomain() {
-    load_plugin_textdomain('identity-verification', false, basename(dirname(__FILE__)) . '/languages');
+    load_plugin_textdomain('identity-verification', false, dirname(plugin_basename(__FILE__)) . '/languages');
 }
 add_action('plugins_loaded', 'iv_load_textdomain');
 
 // Incluir los archivos necesarios
-require_once plugin_dir_path(__FILE__) . 'includes/class-iv-admin.php';
-require_once plugin_dir_path(__FILE__) . 'includes/class-iv-user.php';
-require_once plugin_dir_path(__FILE__) . 'includes/class-iv-redirect.php';
-require_once plugin_dir_path(__FILE__) . 'includes/class-iv-settings.php';
+require_once plugin_dir_path(__FILE__) . 'includes/functions.php';
+require_once plugin_dir_path(__FILE__) . 'includes/class-iv.php';
 
-// Inicializar las clases
+// Inicializar el plugin
 function iv_init() {
-    new IV_Admin();
-    new IV_User();
-    new IV_Redirect();
-    new IV_Settings();
+    $plugin = new Identity_Verification();
+    $plugin->run();
 }
 add_action('plugins_loaded', 'iv_init');
 
 // Registrar la función de desinstalación
 register_uninstall_hook(__FILE__, 'iv_uninstall');
 
+// Función de desinstalación
 function iv_uninstall() {
     if (!defined('WP_UNINSTALL_PLUGIN')) {
         exit;
@@ -49,7 +46,6 @@ function iv_uninstall() {
 
     // Obtener todos los usuarios y eliminar los metadatos relacionados con la verificación de identidad
     $users = get_users(array('fields' => array('ID')));
-
     foreach ($users as $user) {
         delete_user_meta($user->ID, 'identity_verification');
         delete_user_meta($user->ID, 'identity_verification_file');
