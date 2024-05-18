@@ -23,5 +23,11 @@ class Identity_Verification {
         new IV_User();
         new IV_Redirect();
         new IV_Settings();
+        add_action('wp_enqueue_scripts', array($this, 'enqueue_styles'));
+    }
+
+    public function enqueue_styles() {
+        wp_enqueue_style('identity-verification', plugin_dir_url(__FILE__) . '../assets/css/identity-verification.css');
     }
 }
+?>

@@ -5,6 +5,7 @@ Description: Verifica la identidad de los usuarios y muestra contenido según el
 Version: 1.0
 Author: Yasiel Hernández Portal
 Text Domain: identity-verification
+Domain Path: /languages
 */
 
 // Evitar el acceso directo al archivo
@@ -29,26 +30,4 @@ function iv_init() {
 }
 add_action('plugins_loaded', 'iv_init');
 
-// Registrar la función de desinstalación
-register_uninstall_hook(__FILE__, 'iv_uninstall');
-
-// Función de desinstalación
-function iv_uninstall() {
-    if (!defined('WP_UNINSTALL_PLUGIN')) {
-        exit;
-    }
-
-    // Eliminar opciones del plugin
-    delete_option('iv_redirect_no_verificado');
-    delete_option('iv_content_pendiente');
-    delete_option('iv_redirect_verificado');
-    delete_option('iv_content_verificado');
-
-    // Obtener todos los usuarios y eliminar los metadatos relacionados con la verificación de identidad
-    $users = get_users(array('fields' => array('ID')));
-    foreach ($users as $user) {
-        delete_user_meta($user->ID, 'identity_verification');
-        delete_user_meta($user->ID, 'identity_verification_file');
-        delete_user_meta($user->ID, 'verification_status');
-    }
-}
+?>

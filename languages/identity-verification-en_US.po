@@ -5,120 +5,120 @@ msgstr ""
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: es_ES\n"
+"Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.4.4\n"
 
 msgid "Identity Verification"
-msgstr "Verificación de identidad"
+msgstr "Identity Verification"
 
 msgid ""
 "Please enter your national identification number and upload a photo of your "
 "ID."
 msgstr ""
-"Ingrese su número de identificación nacional y suba una foto de su "
-"identificación."
+"Please enter your national identification number and upload a photo of your "
+"ID."
 
 msgid "DNI Number"
-msgstr "Número de DNI"
+msgstr "DNI Number"
 
 msgid "Photo of ID"
-msgstr "Foto del DNI"
+msgstr "Photo of ID"
 
 msgid "Submit"
-msgstr "Enviar"
+msgstr "Submit"
 
 msgid "You must log in to access this page."
-msgstr "Debes iniciar sesión para acceder a esta página."
+msgstr "You must log in to access this page."
 
 msgid "Verified"
-msgstr "Verificado"
+msgstr "Verified"
 
 msgid ""
 "Your identity has been successfully verified. Thank you for helping to "
 "maintain a safe environment."
 msgstr ""
-"Su identidad ha sido verificada con éxito. Gracias por colaborar para "
-"mantener un entorno seguro."
+"Your identity has been successfully verified. Thank you for helping to "
+"maintain a safe environment."
 
 msgid "Access"
-msgstr "Acceder"
+msgstr "Access"
 
 msgid "In Process"
-msgstr "En proceso"
+msgstr "In Process"
 
 msgid ""
 "Your identity verification is in process. This process will be completed "
 "within 24 hours during business hours."
 msgstr ""
-"Su verificación de identidad está en proceso. Este trámite se completará en "
-"un máximo de 24 horas durante el horario laboral."
+"Your identity verification is in process. This process will be completed "
+"within 24 hours during business hours."
 
 msgid "The file size exceeds the 2MB limit."
-msgstr "El tamaño del archivo excede el límite de 2MB."
+msgstr "The file size exceeds the 2MB limit."
 
 msgid "Error uploading file: "
-msgstr "Error al subir el archivo: "
+msgstr "Error uploading file: "
 
 msgid "Identity Verification Settings"
-msgstr "Configuración de la Verificación de Identidad"
+msgstr "Identity Verification Settings"
 
 msgid "Redirection Page (Not Verified)"
-msgstr "Página de Redirección (No Verificado)"
+msgstr "Redirection Page (Not Verified)"
 
 msgid "Select page"
-msgstr "Seleccionar página"
+msgstr "Select page"
 
 msgid ""
 "Select the page where non-verified users will be redirected and ensure to "
 "insert the shortcode [iv_verification_form] on that page."
 msgstr ""
-"Seleccione la página donde se redirigirán los usuarios no verificados y "
-"asegúrese de insertar el shortcode [iv_verification_form] en esa página."
+"Select the page where non-verified users will be redirected and ensure to "
+"insert the shortcode [iv_verification_form] on that page."
 
 msgid "Save changes"
-msgstr "Guardar cambios"
+msgstr "Save changes"
 
 msgid "DNI number provided by the user."
-msgstr "Número de DNI proporcionado por el usuario."
+msgstr "DNI number provided by the user."
 
 msgid "Photo of DNI uploaded by the user."
-msgstr "Foto del DNI subida por el usuario."
+msgstr "Photo of DNI uploaded by the user."
 
 msgid "Verification Status"
-msgstr "Estado de Verificación"
+msgstr "Verification Status"
 
 msgid "Not Verified"
-msgstr "No Verificado"
+msgstr "Not Verified"
 
 msgid "Pending"
-msgstr "Pendiente"
+msgstr "Pending"
 
 msgid "Select the verification status."
-msgstr "Seleccione el estado de verificación."
+msgstr "Select the verification status."
 
 msgid "Change verification to..."
-msgstr "Cambiar verificación a..."
+msgstr "Change verification to..."
 
 msgid "Apply"
-msgstr "Aplicar"
+msgstr "Apply"
 
 msgid "Please select a verification status."
-msgstr "Por favor, selecciona un estado de verificación."
+msgstr "Please select a verification status."
 
 msgid "Please select at least one user."
-msgstr "Por favor, selecciona al menos un usuario."
+msgstr "Please select at least one user."
 
 msgid "You do not have permission to do this."
-msgstr "No tienes permiso para hacer esto."
+msgstr "You do not have permission to do this."
 
 msgid "Missing parameters."
-msgstr "Faltan parámetros."
+msgstr "Missing parameters."
 
 msgid "Verification status updated."
-msgstr "Estado de verificación actualizado."
+msgstr "Verification status updated."
 
 msgid "Enter your DNI number"
-msgstr "Ingrese su número de DNI"
+msgstr "Enter your DNI number"

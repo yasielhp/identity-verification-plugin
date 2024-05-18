@@ -15,7 +15,7 @@ class IV_Redirect {
             $verification_status = get_user_meta($user->ID, 'verification_status', true);
             $redirect_page_id = get_option('iv_redirect_no_verificado');
             
-            if ($verification_status !== 'verificado' && !is_page($redirect_page_id)) {
+            if ($verification_status !== 'verified' && !is_page($redirect_page_id)) {
                 global $wp;
                 $redirect_url = $redirect_page_id ? get_permalink($redirect_page_id) : home_url();
                 $current_url = home_url(add_query_arg(array(), $wp->request));
@@ -28,3 +28,4 @@ class IV_Redirect {
         }
     }
 }
+?>
