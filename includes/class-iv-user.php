@@ -43,6 +43,7 @@ class IV_User {
             <div class="box-status process">
                 <h3 class="box-status-title process">' . esc_html__('In Process', 'identity-verification') . '</h3>
                 <p class="box-status-description process">' . esc_html__('Your identity verification is in process. This process will be completed within 24 hours during business hours.', 'identity-verification') . '</p>
+                <a class="button" href="/">' . esc_html__('Update', 'identity-verification') . '</a>
             </div>';
         }
 

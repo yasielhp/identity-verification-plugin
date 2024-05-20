@@ -122,3 +122,6 @@ msgstr "Verification status updated."
 
 msgid "Enter your DNI number"
 msgstr "Enter your DNI number"
+
+msgid "Update"
+msgstr "Update"
