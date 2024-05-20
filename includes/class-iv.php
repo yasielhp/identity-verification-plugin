@@ -12,18 +12,29 @@ class Identity_Verification {
     }
 
     private function load_dependencies() {
+        $this->require_admin_classes();
+        $this->require_frontend_classes();
+    }
+
+    private function require_admin_classes() {
         require_once plugin_dir_path(__FILE__) . 'admin/class-iv-admin.php';
-        require_once plugin_dir_path(__FILE__) . 'class-iv-user.php';
-        require_once plugin_dir_path(__FILE__) . 'class-iv-redirect.php';
         require_once plugin_dir_path(__FILE__) . 'class-iv-settings.php';
     }
 
+    private function require_frontend_classes() {
+        require_once plugin_dir_path(__FILE__) . 'class-iv-user.php';
+        require_once plugin_dir_path(__FILE__) . 'class-iv-redirect.php';
+    }
+
     private function init_hooks() {
-        new IV_Admin();
-        new IV_User();
-        new IV_Redirect();
-        new IV_Settings();
-        add_action('wp_enqueue_scripts', array($this, 'enqueue_styles'));
+        if (is_admin()) {
+            new IV_Admin();
+            new IV_Settings();
+        } else {
+            new IV_User();
+            new IV_Redirect();
+            add_action('wp_enqueue_scripts', array($this, 'enqueue_styles'));
+        }
     }
 
     public function enqueue_styles() {

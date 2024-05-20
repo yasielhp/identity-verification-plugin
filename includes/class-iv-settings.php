@@ -47,7 +47,7 @@ class IV_Settings {
             'show_option_none' => __('Select page', 'identity-verification'),
             'option_none_value' => ''
         ));
-        echo '<p>' . __('Select the page where non-verified users will be redirected and ensure to insert the shortcode [iv_verification_form] on that page.', 'identity-verification') . '</p>';
+        echo '<p>' . esc_html__('Select the page where non-verified users will be redirected and ensure to insert the shortcode [iv_verification_form] on that page.', 'identity-verification') . '</p>';
     }
 
     public function settings_page_html() {
@@ -61,7 +61,7 @@ class IV_Settings {
                 <?php
                 settings_fields('iv_settings_group');
                 do_settings_sections('identity-verification-settings');
-                submit_button(__('Save changes', 'identity-verification'));
+                submit_button(esc_html__('Save changes', 'identity-verification'));
                 ?>
             </form>
         </div>
