@@ -4,7 +4,7 @@ if (!defined('ABSPATH')) {
 }
 
 class Identity_Verification {
-    
+
     public function run() {
         // Inicializar las clases
         $this->load_dependencies();

@@ -1,0 +1,37 @@
+# Ignorar archivos temporales del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Ignorar archivos de configuración del entorno
+.env
+
+# Ignorar las carpetas de dependencias si no deseas incluirlas en Git
+vendor/
+
+# Ignorar los archivos de caché de Composer
+composer.lock
+
+# Ignorar archivos de logs
+*.log
+
+# Ignorar archivos sensibles
+includes/service-account-credentials.json
+
+# Ignorar archivos de configuración de IDEs
+.idea/
+.vscode/
+
+# Ignorar carpetas de compilación
+build/
+node_modules/
+
+# Ignorar archivos de caché y autogenerados de WordPress (si fuera necesario, puedes ajustar estos según tu estructura)
+wp-content/cache/
+wp-content/uploads/
+wp-content/upgrade/
+
+# Ignorar configuraciones locales de WordPress
+wp-config.php
+
+# Ignorar otras configuraciones locales y archivos sensibles
+# Ajusta estos patrones según tus necesidades específicas
