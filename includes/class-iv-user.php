@@ -22,6 +22,14 @@ class IV_User {
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_verification'])) {
             $this->handle_verification_submission($user_id);
+
+            // Redirigir después de la presentación del formulario para evitar reenvío al actualizar
+            wp_redirect(add_query_arg('verification_status', 'submitted', wp_get_referer()));
+            exit;
+        }
+
+        // Mostrar mensajes de estado basados en la redirección
+        if (isset($_GET['verification_status']) && $_GET['verification_status'] === 'submitted') {
             $verification_status = get_user_meta($user_id, 'verification_status', true);
         }
 
@@ -42,7 +50,7 @@ class IV_User {
         return '
             <div class="box-status verified">
                 <h3 class="box-status-title verified">' . esc_html__('Verified', 'identity-verification') . '</h3>
-                <p class="box-status-description verified">' . esc_html__('Your identity has been successfully verified. Thank you for helping to maintain a safe environment', 'identity-verification') . '</p>
+                <p class="box-status-description verified">' . esc_html__('Your identity has been successfully verified.', 'identity-verification') . '</p>
                 <a class="button" href="/">' . esc_html__('Access', 'identity-verification') . '</a>
             </div>';
     }
@@ -51,7 +59,7 @@ class IV_User {
         return '
             <div class="box-status process">
                 <h3 class="box-status-title process">' . esc_html__('In Process', 'identity-verification') . '</h3>
-                <p class="box-status-description process">' . esc_html__('Your identity verification is in process. This process will be completed within 24 hours during business hours.', 'identity-verification') . '</p>
+                <p class="box-status-description process">' . esc_html__('Your identity verification is in process.', 'identity-verification') . '</p>
                 <a class="button" href="/">' . esc_html__('Update', 'identity-verification') . '</a>
             </div>';
     }
